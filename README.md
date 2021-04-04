@@ -16,3 +16,19 @@ console.log(`'Password' strength is ${strength}`);
 
 // 'Password' strength is 26 
 ```
+
+To add custom calculators:
+
+```ts
+import getPasswordStrength from "https://deno.land/x/password_meter/mod.ts";
+import {allCalcFunctions} from "https://deno.land/x/password_meter/functions.ts";
+
+const myCalc = (s: string): number => s.length;
+const strength = getPasswordStrength('Password', {
+  functions: [
+    ...allCalcFunctions,
+    myCalc,
+  ],
+});
+console.log(`'Password' strength is ${strength}`);
+```

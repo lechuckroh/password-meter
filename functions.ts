@@ -17,7 +17,7 @@ const numberSeq = '01234567890';
 const alphaSeq = 'abcdefghijklmnopqrstuvwxyz';
 const symbolSeq = '~!@#$%^&*()_+{}|<>?,./';
 
-type CalcFunc = (pwd: string) => number;
+export type CalcFunc = (pwd: string) => number;
 
 export function calcNumberOfChars(pwd: string): number {
   return pwd.length * 4;

@@ -1,6 +1,7 @@
 import {assertEquals} from "./test_deps.ts";
 import getPasswordStrength from "./mod.ts";
 import {
+  allCalcFunctions,
   calcConsecutiveLowercase,
   calcConsecutiveNumber,
   calcConsecutiveUppercase,
@@ -175,5 +176,27 @@ Deno.test("password score", () => {
   Object.entries(testSet).forEach(e => {
     const [password, score] = e;
     assertEq(getPasswordStrength(password), score);
+  });
+});
+
+Deno.test("custom functions", () => {
+  // add length of string to score
+  const customFunc = (s: string): number => s.length;
+
+  const testSet = {
+    '': 0,
+    'a': 3 + 1,
+    '1': 3 + 1,
+    '321': 4 + 3,
+    '3 2 1': 4 + 3,
+    'Aa': 10 + 2,
+    'AA': 2,
+    'PassW0rd!': 72 + 9,
+    ' Pass W0rd! ': 72 + 9
+  };
+
+  Object.entries(testSet).forEach(e => {
+    const [password, score] = e;
+    assertEq(getPasswordStrength(password, {functions: [...allCalcFunctions, customFunc]}), score);
   });
 });
