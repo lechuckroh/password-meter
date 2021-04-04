@@ -1,0 +1,16 @@
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# dotenv environment variables file
+.env
+
+# IDE
+.idea
+/dist
+
+# test output
+cov_profile
+cov_profile.lcov
